@@ -1,0 +1,105 @@
+[
+  {
+    "id": 1,
+    "title": "The Fire Dancer",
+    "description": "An evocative 2D digital illustration depicting a mythical dancer born from flames. The design focuses on fluid line art, warm glowing gradients, and dynamic silhouette creation. Her crown of flickering fire and glowing skin markings symbolize life, warmth, and ethereal power.",
+    "type": "Character Art",
+    "image": "assets/images/01.jpg",
+    "images": [
+      {
+        "url": "assets/images/01.jpg",
+        "label": "Rendered Version",
+        "caption": "Final rendered artwork featuring glowing light effects, warm color harmonies, and vibrant flame textures to bring the character to life."
+      },
+      {
+        "url": "assets/images/1-lineart.jpg",
+        "label": "Clean Line Art",
+        "caption": "Clean vector line art focusing on clean silhouettes, fluid anatomy, and dynamic flow before color and lighting application."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "The Abyssal Rockstar: Fantasy Character Concept",
+    "description": "Custom character illustration featuring a fantasy demon bard rocking a magical guitar. Designed with vibrant purple aesthetics, intricate line art, glowing magical effects, and detailed armor highlights",
+    "type": "Character Art",
+    "image": "assets/images/c1.jpg"
+    
+  },
+  {
+    "id": 3,
+    "title": "Dragon Maid in Full Bloom",
+    "description": "A cheerful 2D digital fan art illustration of Tohru from Miss Kobayashi's Dragon Maid. Set in a sunlit, rose-filled garden pergola, she playfully lifts her maid dress to reveal her magnificent dragon tail with detailed green scales.",
+    "type": "Concept Art",
+    "image": "assets/images/02.jpg",
+    "images": [
+      {
+        "url": "assets/images/02-lineart.jpg",
+        "label": "Clean Line Art",
+        "caption": "Getting all those intricate dragon scales and her signature twin-tails just right was a fun challenge! Here is the clean inking stage for my Tohru illustration before adding colors, shades, and the floral garden background."
+      },
+      {
+        "url": "assets/images/02-colored.jpg",
+        "label": "Color art",
+        "caption": "After the line art, Tohru's base colors (flats) are all set! Her bright orange twin-tails, classic navy maid dress, and green dragon tail are laying down the perfect palette for the scene."
+      },
+       {
+        "url": "assets/images/02.jpg",
+        "label": "Final Rendered Art",
+        "caption": "The final render is officially complete! Brought together all the intricate details—from the dappled sunlight streaming through the garden pergola to the realistic scales on her dragon tail. Seeing her vibrant colors pop against the soft floral background was so satisfying to finish!"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Monochrome Chic – Urban Girl Character Design",
+    "description": "A sleek 2D full-body character concept art featuring a trendy girl in a monochrome palette. Styled in an off-shoulder ruffled crop top, double-buckle belt jeans, and a high ponytail, this design focuses on clean lines and greyscale tones.",
+    "type": "Illustration",
+    "image": "assets/images/03.jpg",
+    "images": [
+      {
+        "url": "assets/images/03.jpg",
+        "label": "Final Version",
+        "caption": "Greyscale hits different! Urban chic character design featuring clean lines and monochrome contrast"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Midnight Delivery: Future Mecha Maid",
+    "description": "A vibrant 2D digital anime illustration featuring a futuristic cyber-mecha girl serving food outside a cozy, vine-covered cottage entrance. Clad in sleek dark armor with cyan neon accents, she holds plates with a juicy burger and a foamy drink under warm lantern light. The piece creates a striking contrast between sci-fi technology and a warm, inviting evening home aesthetic.",
+    "type": "Concept Art",
+    "image": "assets/images/07.png",
+    "images": [
+      {
+        "url": "assets/images/07.png",
+        "label": "Concept Painting",
+        "caption": "For this artwork, the main goal was balancing high-tech elements—like the dark armor suit and cyan glowing nodes—with organic, warm ambient lighting from the entryway lanterns and garden foliage"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Green Thunder Stroll – Luigi Fan Art",
+    "description": "A vibrant 2D digital fan art illustration of Luigi from the Super Mario universe, strolling through a sunlit, charming Japanese-style alleyway. Styled with his classic green cap, blue overalls, and confident pose, this piece blends classic gaming nostalgia with an atmospheric outdoor setting.",
+    "type": "Character Art",
+    "image": "assets/images/09.jpg",
+    "images": [
+      {
+        "url": "assets/images/09-lineart.jpg",
+        "label": "Clean Line Art",
+        "caption": "Getting Luigi's friendly expression, signature cap, and overall proportions just right was a fun project! Here is the clean inking stage before adding flats and lighting."
+      },
+      {
+        "url": "assets/images/09-colored.jpg",
+        "label": "Base Color Art",
+        "caption": "Moving from line art to base colors! Laying down Luigi’s iconic green and blue palette instantly brings the character to life."
+      },
+      {
+        "url": "assets/images/09.jpg",
+        "label": "Final Rendered Art",
+        "caption": "The final piece is officially done! Brought Luigi to life as he takes a sunny stroll down a charming, sun-drenched alleyway. Added all the dynamic lighting, soft shadows, and warm ambient glow to make his iconic green and blue palette pop against the background."
+      }
+    ]
+  }
+]

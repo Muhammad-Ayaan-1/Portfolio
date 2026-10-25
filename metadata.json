@@ -1,0 +1,6 @@
+{
+  "name": "AYN — 2D Artist & Illustrator Portfolio",
+  "description": "Portfolio website for AYN, professional 2D Artist, Illustrator, Character Designer, and Animator featuring a JSON-powered artwork gallery, lightbox, and interactive showcase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

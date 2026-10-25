@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AYN — 2D Artist & Illustrator Portfolio</title>
+  <meta name="description" content="Explore AYN's portfolio of 2D art, character designs, illustrations, concept art, and animation.">
+  <meta name="theme-color" content="#FFFFFF" id="meta-theme-color">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AYN — 2D Artist & Illustrator Portfolio">
+  <meta property="og:description" content="Explore AYN's portfolio of 2D art, character designs, illustrations, concept art, and animation.">
+  <meta property="og:image" content="assets/images/mystic-warrior.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AYN — 2D Artist & Illustrator Portfolio">
+  <meta name="twitter:description" content="Explore AYN's portfolio of 2D art, character designs, illustrations, concept art, and animation.">
+
+  <!-- Instant Theme Execution to Prevent Flash -->
+  <script>
+    (function () {
+      try {
+        const savedTheme = localStorage.getItem('ayn_theme');
+        const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initialTheme = savedTheme ? savedTheme : (systemPrefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', initialTheme);
+        const metaThemeColor = document.getElementById('meta-theme-color');
+        if (metaThemeColor) {
+          metaThemeColor.setAttribute('content', initialTheme === 'dark' ? '#0B131E' : '#FFFFFF');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Fonts: Plus Jakarta Sans & DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Creative Preloader Screen (3-4 Seconds Intro) -->
+  <!-- <aside id="preloader" class="preloader" role="dialog" aria-modal="true" aria-label="Welcome screen">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-container">
+      Animated Celestial Artist Inking Ring
+      <div class="preloader-animation-box" aria-hidden="true">
+        <div class="preloader-orbit preloader-orbit-outer"></div>
+        <div class="preloader-orbit preloader-orbit-inner"></div>
+        <div class="preloader-core">
+          <svg viewBox="0 0 48 48" fill="none" class="preloader-svg">
+            <circle cx="24" cy="24" r="20" stroke="rgba(255, 183, 3, 0.25)" stroke-width="2"/>
+            <path d="M14 34L32 16M32 16H20M32 16V28" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="preloader-ink-stroke"/>
+            <circle cx="14" cy="34" r="3" fill="var(--accent)"/>
+            <circle cx="32" cy="16" r="3" fill="#8ECAE6"/>
+          </svg>
+        </div>
+      </div>
+
+      Welcome Messaging
+      <div class="preloader-text-wrapper">
+        <span class="preloader-kicker">AYN · CREATIVE STUDIO</span>
+        <h1 class="preloader-title">Welcome to the <span class="preloader-highlight">Ayaan's portfolio</span></h1>
+        <p class="preloader-subtitle">2D Artist · Character Designer · Visual Storyteller</p>
+      </div>
+
+      Dynamic Loading Bar & Counter
+      <div class="preloader-progress-box">
+        <div class="preloader-bar-track">
+          <div class="preloader-bar-fill" id="preloader-bar-fill"></div>
+        </div>
+        <div class="preloader-meta-row">
+          <span class="preloader-status-msg" id="preloader-status-msg">Preparing Visuals...</span>
+          <span class="preloader-counter" id="preloader-counter">0%</span>
+        </div>
+      </div>
+
+      Skip Button
+      <button type="button" class="preloader-skip-btn" id="preloader-skip-btn" aria-label="Skip loading intro">
+        Skip Intro
+      </button>
+    </div>
+  </aside> -->
+
+  <!-- Dynamic Scroll Progress Indicator -->
+  <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Interactive Background & Ambient Particles -->
+  <div class="bg-decorations" aria-hidden="true">
+    <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    <div class="bg-shape-ring"></div>
+  </div>
+
+  <!-- Subtle Desktop Mouse Glow -->
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Header / Navigation (Top Bar Contract: Brand | Links | Action) -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <!-- Zone 1: Single Text Element Brand Wordmark -->
+      <a href="#home" class="brand-logo" aria-label="AYN Home">
+        AYN<span class="brand-dot">.</span>
+      </a>
+
+      <!-- Zone 2: Navigation Links -->
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#gallery" class="nav-link">Gallery</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Zone 3: Primary Actions & Controls -->
+      <div class="nav-action">
+        <!-- Theme Toggle Button (Desktop) -->
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Switch to dark theme" title="Toggle theme">
+          <span class="theme-icon-box" aria-hidden="true">
+            <!-- Sun Icon (Active in Dark mode) -->
+            <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+            </svg>
+            <!-- Moon Icon (Active in Light mode) -->
+            <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+            </svg>
+          </span>
+          <span class="theme-btn-label">Theme</span>
+        </button>
+
+        <!-- Download CV Action -->
+        <a href="./CV.pdf" download="AYN-CV.pdf" class="btn btn-primary" title="Download artist resume">
+          <span>Download CV</span>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" x2="12" y1="15" y2="3"/>
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobile-nav" class="mobile-nav-drawer" aria-label="Mobile Navigation" role="dialog" aria-modal="true">
+    <ul class="mobile-links">
+      <li><a href="#home" class="mobile-nav-link active">Home</a></li>
+      <li><a href="#gallery" class="mobile-nav-link">Gallery</a></li>
+      <li><a href="#about" class="mobile-nav-link">About</a></li>
+      <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
+      <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+      <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+    </ul>
+
+    <div class="mobile-drawer-bottom">
+      <!-- Mobile Theme Switcher Row -->
+      <div class="mobile-theme-row">
+        <span class="mobile-theme-caption">Visual Theme</span>
+        <button type="button" class="mobile-theme-toggle" id="mobile-theme-toggle" aria-label="Toggle dark and light theme">
+          <span class="mobile-theme-icons" aria-hidden="true">
+            <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          </span>
+          <span id="mobile-theme-status-text">Light Mode</span>
+        </button>
+      </div>
+
+      <a href="./CV.pdf" download="AYN-CV.pdf" class="btn btn-primary" style="width: 100%;">
+        <span>Download CV</span>
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" x2="12" y1="15" y2="3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <main>
+    <!-- 1. Home / Hero Section -->
+    <section id="home" class="section hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Left Column: Typographic Hierarchy -->
+          <div class="hero-content reveal">
+            <div class="hero-kicker-row">
+              <span class="hero-kicker">INDEPENDENT 2D ARTIST &amp; CONCEPT DESIGNER</span>
+              <span class="hero-status-pill"><span class="status-pulse-dot"></span> Available for Projects</span>
+            </div>
+            
+            <h1 class="hero-title">
+              I CREATE WORLDS THROUGH <span class="highlight">ART</span>.
+            </h1>
+            
+            <p class="hero-description">
+              Welcome! I'm Ayaan, a passionate 2D artist creating expressive character designs, detailed lineart, digital illustrations, and visual stories that bring imagination to life.
+            </p>
+
+            <!-- Creative Disciplines Strip -->
+            <div class="hero-disciplines">
+              <span class="discipline-tag">✦ Character Design</span>
+              <span class="discipline-tag">✦ Clean Lineart</span>
+              <span class="discipline-tag">✦ Visual Storytelling</span>
+              <span class="discipline-tag">✦ Concept Art</span>
+            </div>
+
+            <div class="hero-actions">
+              <a href="#gallery" class="btn btn-primary">
+                <span>Explore Selected Works</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14"/>
+                  <path d="m12 5 7 7-7 7"/>
+                </svg>
+              </a>
+              <a href="./CV.pdf" download="AYN-CV.pdf" class="btn btn-secondary">
+                <span>Download CV</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" x2="12" y1="15" y2="3"/>
+                </svg>
+              </a>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="hero-scroll-indicator" aria-hidden="true">
+              <div class="scroll-mouse-icon">
+                <div class="scroll-wheel"></div>
+              </div>
+              <span>Scroll to discover artworks</span>
+            </div>
+          </div>
+
+          <!-- Right Column: Creative Portrait Artistic Composition -->
+          <div class="hero-visual-wrapper reveal delay-1">
+            <!-- Ambient Glowing Halo -->
+            <div class="hero-art-glow" aria-hidden="true"></div>
+            <!-- Celestial Orbit Ring -->
+            <div class="hero-deco-ring" aria-hidden="true"></div>
+            
+            <!-- 
+              PORTRAIT RATIO HERO ARTWORK (Aspect Ratio 3:4 / Vertical):
+              To customize: replace 'assets/images/featured-artwork.jpg' with your own portrait artwork file!
+            -->
+            <div class="hero-artwork-frame hero-portrait-frame" >
+              <!-- Corner Gilded Brackets -->
+              <span class="frame-corner frame-corner-tl" aria-hidden="true"></span>
+              <span class="frame-corner frame-corner-tr" aria-hidden="true"></span>
+              <span class="frame-corner frame-corner-bl" aria-hidden="true"></span>
+              <span class="frame-corner frame-corner-br" aria-hidden="true"></span>
+
+              <img 
+                src="assets/images/profile.png" 
+                alt="Featured 2D character portrait artwork illustration"
+                id="hero-featured-img"
+                loading="eager"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', '<div class=\'artwork-fallback\'><div style=\'font-weight:700;\'>Featured Portrait Artwork</div></div>')"
+              >
+              
+              <!-- Interactive Caption Bar -->
+              <!-- <div class="hero-art-caption">
+                <div class="hero-art-caption-left">
+                  <span class="hero-art-title">Celestial Valkyrie</span>
+                  <span class="hero-art-tag">Character Art · 3:4 Portrait</span>
+                </div>
+                <div class="hero-art-inspect-pill" title="Click to view full artwork & lineart">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="11" x2="11" y1="8" y2="14"/><line x1="8" x2="14" y1="11" y2="11"/></svg>
+                  <span>View Details</span>
+                </div>
+              </div> -->
+            </div>
+
+            <div class="hero-deco-badge hero-badge-bottom" aria-hidden="true">
+              <span>Muhammad Ayaan · 2D Artist &amp; Animator</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. JSON-Powered Artwork Gallery Section -->
+    <section id="gallery" class="section section-alt gallery-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">THE PORTFOLIO</span>
+          <h2 class="section-title">Selected Works.</h2>
+          <p class="section-description">
+            A curated collection of character designs, digital illustrations, concept environments, and visual experiments powered dynamically by JSON.
+          </p>
+        </div>
+
+        <div class="gallery-top-bar reveal delay-1">
+          <!-- Dynamic Category Filters (Generated automatically by JavaScript) -->
+          <div id="filter-container" class="filter-container" role="tablist" aria-label="Artwork categories">
+            <button type="button" class="filter-btn active" role="tab" aria-selected="true">All Works</button>
+          </div>
+          <span id="gallery-count" class="gallery-count-badge">Loading works...</span>
+        </div>
+
+        <!-- Artwork Grid (Populated dynamically from artworks.json) -->
+        <div id="artwork-grid" class="artwork-grid" aria-live="polite">
+          <div class="gallery-status-message">
+            <h3>Loading Gallery...</h3>
+            <p>Fetching artworks from artworks.json</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. About the Artist Section -->
+    <section id="about" class="section about-section">
+      <div class="container">
+        <div class="about-grid">
+          <!-- Left: Artist Photograph / Avatar -->
+          <div class="about-image-wrapper reveal">
+            <div class="about-frame-border" aria-hidden="true"></div>
+            <div class="about-image-frame">
+              <img 
+                src="assets/images/profile.png" 
+                alt="Artist portrait of AYN in the studio" 
+                loading="lazy"
+                onerror="this.onerror=null; this.src='assets/images/placeholder-artwork.png';"
+              >
+            </div>
+          </div>
+
+          <!-- Right: Narrative & Highlights -->
+          <div class="about-content reveal delay-1">
+            <span class="section-label">A LITTLE ABOUT ME</span>
+            <h2 class="section-title">Art is how I tell stories.</h2>
+            <p class="about-text">
+              I'm a 2D artist focused on character design, illustration, and visual storytelling. I enjoy turning ideas into expressive artwork through thoughtful composition, color, and detail. My goal is to create visuals that feel memorable, distinctive, and full of personality.
+            </p>
+            <p class="about-text" style="margin-top: -0.75rem; margin-bottom: 2rem;">
+              Whether shaping dynamic silhouettes for game heroes, drafting background worldbuilding for animated scenes, or experimenting with digital painting palettes, I treat every canvas as an opportunity to spark emotion and wonder.
+            </p>
+
+            <!-- Interactive Milestone Stats Strip (Animated on Scroll) -->
+            <div class="stats-strip reveal delay-2">
+              <div class="stat-item">
+                <div class="stat-number"><span class="stat-count" data-target="100">0</span><span class="stat-suffix">+</span></div>
+                <div class="stat-label">Artworks Created</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number"><span class="stat-count" data-target="5">0</span><span class="stat-suffix">+</span></div>
+                <div class="stat-label">Years of Practice</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number"><span class="stat-count" data-target="40">0</span><span class="stat-suffix">+</span></div>
+                <div class="stat-label">Studio Projects</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number"><span class="stat-count" data-target="100">0</span><span class="stat-suffix">%</span></div>
+                <div class="stat-label">Original Creations</div>
+              </div>
+            </div>
+
+            <!-- Highlights Grid -->
+            <div class="about-highlights-grid">
+              <div class="about-highlight-item">
+                <div class="highlight-label">Specialization</div>
+                <div class="highlight-value">2D Character &amp; Key Art</div>
+              </div>
+              <div class="about-highlight-item">
+                <div class="highlight-label">Approach</div>
+                <div class="highlight-value">Narrative Worldbuilding</div>
+              </div>
+              <div class="about-highlight-item">
+                <div class="highlight-label">Workflow</div>
+                <div class="highlight-value">Digital Painting &amp; Cel Motion</div>
+              </div>
+              <div class="about-highlight-item">
+                <div class="highlight-label">Availability</div>
+                <div class="highlight-value">Freelance &amp; Contract</div>
+              </div>
+            </div>
+
+            <div>
+              <a href="#gallery" class="btn btn-primary">
+                <span>View My Gallery</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14"/>
+                  <path d="m12 5 7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Experience Timeline Section -->
+    <section id="experience" class="section section-alt timeline-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">MY JOURNEY</span>
+          <h2 class="section-title">Experience &amp; Growth.</h2>
+          <p class="section-description">
+            A timeline of creative practice, collaborative productions, and professional milestones across games, animation, and editorial publishing.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <article class="timeline-card">
+              <div class="timeline-header">
+                <h3 class="timeline-role">Lead 2D Character Artist &amp; Animator</h3>
+                <span class="timeline-date">2024 — Present</span>
+              </div>
+              <div class="timeline-company">Infotecture Solutions</div>
+              <p class="timeline-desc">
+                Designing iconic character turnarounds, expression sheets, and hero promotional illustrations for indie games, webtoons, and tabletop properties. Collaborating closely with art directors to establish unified visual style guides.
+              </p>
+              <div class="timeline-skills-list">
+                <span class="timeline-skill-tag">Character Design</span>
+                <span class="timeline-skill-tag">Concept Art</span>
+                <span class="timeline-skill-tag">Character Animation</span>
+                <span class="timeline-skill-tag">Art Direction</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item reveal delay-1">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <article class="timeline-card">
+              <div class="timeline-header">
+                <h3 class="timeline-role">2D Character Artist &amp; Animator</h3>
+                <span class="timeline-date">2022 — 2024</span>
+              </div>
+              <div class="timeline-company">Streamers Pack</div>
+              <p class="timeline-desc">
+                Developed color scripts, environmental keys, and background layouts for short animated sequences. Created mood boards and thumbnail sketches that guided lighting and cinematics for 2D visual narrative sequences.
+              </p>
+              <div class="timeline-skills-list">
+                <span class="timeline-skill-tag">Visual Storytelling</span>
+                <span class="timeline-skill-tag">Color Scripting</span>
+                <span class="timeline-skill-tag">2D Animation</span>
+                <span class="timeline-skill-tag">Layouts</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-item reveal delay-2">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <article class="timeline-card">
+              <div class="timeline-header">
+                <h3 class="timeline-role">Junior 2D Artist &amp; Graphic Designer</h3>
+                <span class="timeline-date">2011 — 2022</span>
+              </div>
+              <div class="timeline-company">Accent Communiques</div>
+              <p class="timeline-desc">
+                Created rough concept sketches, clean linework, flat coloring, and asset renders for digital publications, merchandise, and promotional campaigns. Refined digital brushwork techniques and color theory.
+              </p>
+              <div class="timeline-skills-list">
+                <span class="timeline-skill-tag">Digital Painting</span>
+                <span class="timeline-skill-tag">Linework</span>
+                <span class="timeline-skill-tag">Social Media Posting</span>
+                <span class="timeline-skill-tag">Asset Creation</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Skills & Expertise Section -->
+    <section id="skills" class="section skills-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">WHAT I DO</span>
+          <h2 class="section-title">Skills &amp; Expertise.</h2>
+          <p class="section-description">
+            Technical mastery and artistic craftsmanship across traditional fundamentals, digital painting suites, and production pipelines.
+          </p>
+        </div>
+
+        <div class="skills-wrapper">
+          <!-- Creative Disciplines -->
+          <div>
+            <h3 class="skills-category-title reveal">Creative Disciplines</h3>
+            <div class="skills-grid">
+              <!-- Skill 1 -->
+              <div class="skill-card reveal">
+                <div class="skill-card-top">
+                  <div class="skill-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+                  </div>
+                  <span class="skill-tag">Discipline</span>
+                </div>
+                <div>
+                  <h4 class="skill-name">2D Illustration</h4>
+                  <p class="skill-detail">Full-rendered editorial and promotional artworks with rich light, color, and mood.</p>
+                </div>
+              </div>
+
+              <!-- Skill 2 -->
+              <div class="skill-card reveal delay-1">
+                <div class="skill-card-top">
+                  <div class="skill-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a8.38 8.38 0 0 1 13 0"/></svg>
+                  </div>
+                  <span class="skill-tag">Discipline</span>
+                </div>
+                <div>
+                  <h4 class="skill-name">Character Design</h4>
+                  <p class="skill-detail">Silhouettes, costumes, turnarounds, emotional expressions, and model sheets.</p>
+                </div>
+              </div>
+
+              <!-- Skill 3 -->
+              <div class="skill-card reveal delay-2">
+                <div class="skill-card-top">
+                  <div class="skill-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  </div>
+                  <span class="skill-tag">Discipline</span>
+                </div>
+                <div>
+                  <h4 class="skill-name">Concept Art</h4>
+                  <p class="skill-detail">Worldbuilding environments, props, architecture, and lighting explorations.</p>
+                </div>
+              </div>
+
+              <!-- Skill 4 -->
+              <div class="skill-card reveal delay-3">
+                <div class="skill-card-top">
+                  <div class="skill-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  </div>
+                  <span class="skill-tag">Discipline</span>
+                </div>
+                <div>
+                  <h4 class="skill-name">2D Animation</h4>
+                  <p class="skill-detail">Keyframing, in-betweens, timing charts, and expressive motion cycles.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Software & Tools -->
+          <div>
+            <h3 class="skills-category-title reveal">Tools &amp; Production Software</h3>
+            <div class="skills-grid">
+              <!-- Tool 1 -->
+              <div class="skill-card reveal">
+                <div class="skill-card-top">
+                  <div class="skill-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+                  </div>
+                  <span class="skill-tag">Tool</span>
+                </div>
+                <div>
+                  <h4 class="skill-name">Adobe Photoshop</h4>
+                  <p class="skill-detail">Digital painting, matte rendering, texture brushes, and color adjustments.</p>
+                </div>
+              </div>
+
+              <!-- Tool 2 -->
+              <div class="skill-card reveal delay-1">
+                <div class="skill-card-top">
+                  <div class="skill-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg>
+                  </div>
+                  <span class="skill-tag">Tool</span>
+                </div>
+                <div>
+                  <h4 class="skill-name">Adobe Illustrator</h4>
+                  <p class="skill-detail">Inking linework, cel-shading, comic layouts, and raster-vector brushwork.</p>
+                </div>
+              </div>
+
+              <!-- Tool 3 -->
+              <div class="skill-card reveal delay-2">
+                <div class="skill-card-top">
+                  <div class="skill-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+                  </div>
+                  <span class="skill-tag">Tool</span>
+                </div>
+                <div>
+                  <h4 class="skill-name">Adobe Photoshop</h4>
+                  <p class="skill-detail">Mobile concept ideation, gesture drawing, dynamic brush crafting, and quick studies.</p>
+                </div>
+              </div>
+
+              <!-- Tool 4 -->
+              <div class="skill-card reveal delay-3">
+                <div class="skill-card-top">
+                  <div class="skill-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  </div>
+                  <span class="skill-tag">Tool</span>
+                </div>
+                <div>
+                  <h4 class="skill-name">Adobe After Effects</h4>
+                  <p class="skill-detail">Motion graphics, parallax camera staging, 2D particle effects, and visual polish.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Contact Section -->
+    <section id="contact" class="section section-alt contact-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">GET IN TOUCH</span>
+          <h2 class="section-title">Let's Create Something.</h2>
+          <p class="section-description">
+            Have an idea, a creative project, or an illustration in mind? I'd love to hear about it.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left: Direct Channels & Socials -->
+          <div class="contact-info-panel reveal">
+            <div>
+              <p class="contact-lead-text">
+                Currently open for character design commissions, game visual development, and select freelance animation projects. Feel free to reach out directly via email or message me on my artist channels.
+              </p>
+
+              <div class="contact-channels">
+                <a href="mailto:ayaanzakir12345@gmail.com" class="contact-channel-item">
+                  <div class="channel-icon-wrapper">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  </div>
+                  <div class="channel-content">
+                    <span class="channel-label">Direct Email</span>
+                    <span class="channel-value">ayaanzakir12345@gmail.com</span>
+                  </div>
+                </a>
+
+                <div class="contact-channel-item">
+                  <div class="channel-icon-wrapper">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  </div>
+                  <div class="channel-content">
+                    <span class="channel-label">Response Time</span>
+                    <span class="channel-value">Within 24–48 Business Hours</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Media Handles -->
+            <div>
+              <span class="channel-label" style="display: block; margin-bottom: 0.75rem;">Artist Profiles &amp; Networks</span>
+              <div class="social-links-bar">
+                <a href="https://www.artstation.com/ayn_arts" target="_blank" rel="noopener noreferrer" class="social-pill" title="ArtStation">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 22 22 22"/></svg>
+                  <span>ArtStation</span>
+                </a>
+                <a href="https://www.behance.net/muhammadayaan6" target="_blank" rel="noopener noreferrer" class="social-pill" title="Behance">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>
+                  <span>Behance</span>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-pill" title="Instagram">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  <span>Instagram</span>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-pill" title="LinkedIn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                  <span>LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Validated Mailto Contact Form -->
+          <div class="contact-form-card reveal delay-1">
+            <form id="contact-form" class="contact-form" novalidate>
+              <div class="form-group">
+                <label for="contact-name" class="form-label">Full Name</label>
+                <input type="text" id="contact-name" class="form-input" placeholder="e.g. Alex Morgan" required>
+                <span class="form-error-msg">Please enter your full name.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email" class="form-label">Email Address</label>
+                <input type="email" id="contact-email" class="form-input" placeholder="e.g. alex@example.com" required>
+                <span class="form-error-msg">Please enter a valid email address.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-subject" class="form-label">Subject</label>
+                <input type="text" id="contact-subject" class="form-input" placeholder="e.g. Character Design Project Inquiry" required>
+                <span class="form-error-msg">Please enter a subject.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message" class="form-label">Message</label>
+                <textarea id="contact-message" class="form-textarea" placeholder="Tell me about your project, timeline, and vision..." rows="4" required></textarea>
+                <span class="form-error-msg">Please enter your message.</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                <span>Send Message</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="22" x2="11" y1="2" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </button>
+
+              <!-- Static-site helpful notification -->
+              <div id="form-notice" class="form-notice" role="alert"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Fullscreen Artwork Lightbox Modal with Multi-Image Support -->
+  <div id="lightbox-modal" class="lightbox-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Artwork detail view">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-dialog">
+      <button type="button" class="lightbox-close-btn" aria-label="Close lightbox modal">✕</button>
+      
+      <!-- Left Stage: Image Viewport + Carousel Arrows + Version Switcher -->
+      <div class="lightbox-stage">
+        <div class="lightbox-image-container">
+          <img src="" alt="" class="lightbox-image" id="lightbox-image">
+          
+          <!-- Prev / Next slide arrows (active when project has multiple images) -->
+          <button type="button" class="lightbox-nav-arrow lightbox-arrow-prev" id="lightbox-prev-btn" aria-label="Previous artwork version" title="Previous version (Left arrow)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button type="button" class="lightbox-nav-arrow lightbox-arrow-next" id="lightbox-next-btn" aria-label="Next artwork version" title="Next version (Right arrow)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
+        <!-- Version Switcher Pills Bar below image (e.g. Final Artwork | Clean Line Art) -->
+        <div class="lightbox-version-pills" id="lightbox-version-pills" role="tablist" aria-label="Artwork versions"></div>
+      </div>
+
+      <!-- Right Panel: Metadata, Description, & Multi-Image Process Thumbnails -->
+      <div class="lightbox-content">
+        <div class="lightbox-header-row">
+          <span class="lightbox-badge">Artwork Type</span>
+          <span class="lightbox-counter" id="lightbox-counter">Image 1 of 1</span>
+        </div>
+
+        <h2 class="lightbox-title">Artwork Title</h2>
+
+        <!-- Active Version Highlight -->
+        <div class="lightbox-version-status" id="lightbox-version-status">
+          <div class="version-tag-row">
+            <span class="version-status-tag" id="version-status-tag">Final Artwork</span>
+          </div>
+          <p class="version-status-desc" id="version-status-desc"></p>
+        </div>
+
+        <p class="lightbox-description">Artwork description will be loaded here.</p>
+        
+        <!-- Multi-Image Thumbnail Gallery List -->
+        <div class="lightbox-process-block" id="lightbox-process-block">
+          <span class="lightbox-block-title">Project Versions &amp; Process:</span>
+          <div class="lightbox-thumb-strip" id="lightbox-thumb-strip"></div>
+        </div>
+
+        <div class="lightbox-meta-details">
+          <div><strong>Artist:</strong> AYN (2D Illustrator &amp; Character Designer)</div>
+          <div><strong>Navigation:</strong> Use <kbd>←</kbd> <kbd>→</kbd> arrow keys to switch, <kbd>ESC</kbd> to exit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Back-to-Top Button -->
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Scroll back to top" title="Scroll to top">
+    <svg class="back-to-top-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="footer-logo">AYN<span style="color: var(--accent);">.</span></a>
+          <span class="footer-tagline">2D Artist &amp; Visual Creator</span>
+          <p class="footer-bio">
+            Crafting memorable characters, worldbuilding illustrations, and visual narratives with passion and dedication.
+          </p>
+        </div>
+
+        <div class="footer-links-col">
+          <div>
+            <h4 class="footer-heading">Navigation</h4>
+            <ul class="footer-nav-list">
+              <li><a href="#home" class="footer-nav-link">Home</a></li>
+              <li><a href="#gallery" class="footer-nav-link">Selected Works</a></li>
+              <li><a href="#about" class="footer-nav-link">About Artist</a></li>
+              <li><a href="#experience" class="footer-nav-link">Experience</a></li>
+              <li><a href="#skills" class="footer-nav-link">Skills &amp; Tools</a></li>
+              <li><a href="#contact" class="footer-nav-link">Get in Touch</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-heading">Connect</h4>
+            <ul class="footer-nav-list">
+              <li><a href="mailto:ayaanzakir12345@gmail.com" class="footer-nav-link">Email Direct</a></li>
+              <li><a href="https://www.artstation.com/ayn_arts" target="_blank" rel="noopener noreferrer" class="footer-nav-link">ArtStation</a></li>
+              <li><a href="https://www.behance.net/muhammadayaan6" target="_blank" rel="noopener noreferrer" class="footer-nav-link">Behance</a></li>
+              <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-nav-link">Instagram</a></li>
+              <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-nav-link">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="current-year">2026</span> AYN. All rights reserved.
+        </div>
+        <div>
+          <a href="./CV.pdf" download="AYN-CV.pdf" class="footer-cv-btn">
+            <span>Download Artist CV (PDF)</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vanilla JavaScript -->
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
